@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="">
+    <link href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" rel="stylesheet">
+    <!-- Materialize-->
+    <link href="{% static 'css/jqvmap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flag-icon-css/css/flag-icon.min.css' %}" rel="stylesheet">
+    <!-- Fomantic-ui-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fomantic-ui/dist/semantic.min.css' %}">
+    <script src="{% static 'fomantic-ui/dist/semantic.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.js"></script>
+
+    <!-- Fullcalendar-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css" rel="stylesheet">
+    <!-- Materialize-->
+    <link href="{% static 'css/admin-materialize.min.css' %}" rel="stylesheet">
+    <!-- Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}" >
+    <title>CDC-SYS</title>
+  </head>
+  <body class="has-fixed-sidenav">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar white">
+          <div class="nav-wrapper"><a href="#!" class="brand-logo grey-text text-darken-4">CDC SYS</a>
+            <ul id="nav-mobile" class="right">
+            </ul><a href="#!" data-target="sidenav-left" class="sidenav-trigger left"><i class="material-icons black-text">menu</i></a>
+          </div>
+        </nav>
+      </div>
+      <ul id="sidenav-left" class="sidenav sidenav-fixed">
+        <li><a href="http://127.0.0.1:8000/dashboard" class="logo-container">Home<i class="material-icons left">view_list</i></a></li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold waves-effect"><a class="collapsible-header">Rec. Humanos<i class="material-icons chevron">chevron_left</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://127.0.0.1:8000/cadastro-func" class="waves-effect">Cadastro Func.<i class="material-icons">web</i></a></li>
+                  <li><a href="http://127.0.0.1:8000/lista-func" class="waves-effect">Lista Func.<i class="material-icons">web</i></a></li>
+                  <li><a href="http://127.0.0.1:8000/calculo-recisao" class="waves-effect">Calculo Recisão<i class="material-icons">list</i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold waves-effect"><a class="collapsible-header">Projetos<i class="material-icons chevron">chevron_left</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://127.0.0.1:8000/cadastro-projeto" class="waves-effect">Cadastro<i class="material-icons">show_chart</i></a></li>
+                  <li><a href="http://127.0.0.1:8000/dashboard" class="waves-effect">dashboard<i class="material-icons">equalizer</i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold waves-effect active"><a class="collapsible-header">Operacional<i class="material-icons chevron">chevron_left</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://127.0.0.1:8000/orcamentos" class="waves-effect">Orçamentos<i class="material-icons">show_chart</i></a></li>
+                  <li><a href="http://127.0.0.1:8000/rubricas" class="waves-effect">Rubricas<i class="material-icons">settings</i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold waves-effect"><a class="collapsible-header">Account<i class="material-icons chevron">chevron_left</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://127.0.0.1:8000/log-in" class="waves-effect">Log In<i class="material-icons">person</i></a></li>
+                  <li><a href="http://127.0.0.1:8000/settings" class="waves-effect">Settings<i class="material-icons">settings</i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <main><div class="container">
+      <div class="container">
+        <h4>Cadastro de Rubricas</h4>
+    
+        <!-- Formulário de Cadastro/Edição -->
+        <form id="rubricaForm" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="codigoRubrica" type="text" class="validate">
+              <label for="codigoRubrica">Código da Rubrica</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="nomeRubrica" type="text" class="validate">
+              <label for="nomeRubrica">Nome da Rubrica</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="saldoDisponivel" type="text" class="validate">
+              <label for="saldoDisponivel">Saldo Disponível</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="button" onclick="cadastrarRubrica()">Cadastrar
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+
+        <!-- Tabela de Rubricas -->
+        <div class="ui one column relaxed grid">
+          <div class="column">
+            <table class="ui definition celled right aligned table">
+              <thead>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Saldo Disponível</th>
+              </thead>
+              <tbody>
+                <tr>
+  
+                  <td class="left aligned">x.xx.xxx
+                    <div class="ui fitted left aligned checkbox">
+                      <input type="checkbox"><label></label>
+                    </div>
+                  </td>
+                  <td>Pessoal</td>
+                  <td>6.000.542,32</td>
+                </tr>
+              </tbody>
+              <tfoot class="full-width">
+                <tr>
+                  <th></th>
+                  <th colspan="4">
+                    <div class="ui right floated small primary labeled icon button">
+                      <i class="user icon"></i> Excluir
+                    </div>
+                    <div class="ui small button">
+                      Alterar
+                    </div>
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+    </main>
+    <footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s6 m3">
+        <img class="data-logo" src="{% static 'img/data triade_logo.png' %}" alt="Materialize">
+        <p>Made with love by Data Tríade.</p>
+      </div>
+      <div class="col s6 m3">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#!">Blog</a></li>
+          <li><a href="#!">Pricing</a></li>
+          <li><a href="#!">Docs</a></li>
+        </ul>
+      </div>
+      <div class="col s6 m3">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#!">Community</a></li>
+          <li><a href="#!">Subscribe</a></li>
+          <li><a href="#!">Email</a></li>
+        </ul>
+      </div>
+      <div class="col s6 m3">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#!">Twitter</a></li>
+          <li><a href="#!">Facebook</a></li>
+          <li><a href="#!">Github</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static 'js/materialize.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+
+<script src="{% static 'fomantic-ui\dist\semantic.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('.ui.dropdown').dropdown();
+  });
+</script>
+<script>
+  $(document).ready(function(){
+    M.updateTextFields();
+    // Inicializa a tabela
+    atualizarTabelaRubricas();
+  });
+
+  function cadastrarRubrica() {
+    const codigo = $('#codigoRubrica').val();
+    const nome = $('#nomeRubrica').val();
+    const saldo = $('#saldoDisponivel').val();
+
+    if (codigo && nome && saldo) {
+      // Adiciona a rubrica à tabela
+      $('#rubricasTableBody').append(`
+        <tr>
+          <td>${codigo}</td>
+          <td>${nome}</td>
+          <td>${saldo}</td>
+          <td>
+            <a class="waves-effect waves-light btn" onclick="editarRubrica(this)">Editar</a>
+            <a class="waves-effect waves-light btn red" onclick="excluirRubrica(this)">Excluir</a>
+          </td>
+        </tr>
+      `);
+
+      // Limpa os campos do formulário
+      $('#rubricaForm')[0].reset();
+    } else {
+      alert('Preencha todos os campos para cadastrar a rubrica.');
+    }
+  }
+
+  function editarRubrica(btnEditar) {
+    const row = $(btnEditar).closest('tr');
+    const codigo = row.find('td:eq(0)').text();
+    const nome = row.find('td:eq(1)').text();
+    const saldo = row.find('td:eq(2)').text();
+
+    // Preenche o formulário com os dados da rubrica selecionada
+    $('#codigoRubrica').val(codigo);
+    $('#nomeRubrica').val(nome);
+    $('#saldoDisponivel').val(saldo);
+
+    // Remove a rubrica da tabela
+    row.remove();
+  }
+
+  function excluirRubrica(btnExcluir) {
+    const row = $(btnExcluir).closest('tr');
+    row.remove();
+  }
+
+  function atualizarTabelaRubricas() {
+    // Você pode adicionar rubricas pré-cadastradas aqui se necessário
+    // Exemplo: $('#rubricasTableBody').append('<tr><td>001</td><td>Rubrica A</td><td>1000.00</td><td>...</td></tr>');
+  }
+</script>
+<script>
+  $(document).ready(function() {
+      $('#minhaTabela').DataTable();
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('.ui.checkbox').checkbox();
+      // Inicialize outros componentes do Fomantic UI aqui
+  });
+  </script>
+
+<!-- External libraries -->
+
+<!-- jqvmap -->
+<script type="text/javascript" src="{% static 'js/jqvmap/jquery.vmap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jqvmap/jquery.vmap.world.js' %}" charset="utf-8"></script>
+<script type="text/javascript" src="{% static 'js/jqvmap/jquery.vmap.sampledata.js' %}"></script>
+
+<!-- ChartJS -->
+<script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/Chart.Financial.js' %}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+
+
+<!-- Initialization script -->
+<script src="{% static 'js/admin.js' %}"></script>
+    <script src="{% static 'js/page-scripts/dashboard.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+
+</html>
