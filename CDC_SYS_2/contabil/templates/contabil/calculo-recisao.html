@@ -81,8 +81,144 @@
         </li>
       </ul>
     </header>
-    <main><div class="container">
+    <main>
         <!-- Funcionalidade aqui-->
+        <div class="container">
+          <h2>Calculadora de Rescisão</h2>
+          
+          <form id="rescisaoForm">
+            <div class="input-field col s12">
+              <input type="text" id="nomeFuncionario" name="nomeFuncionario" required>
+              <label for="nomeFuncionario">Nome do Funcionário</label>
+            </div>
+             <!-- Campo Data de Entrada -->
+            <!-- Campos Data de Entrada e Data de Saída lado a lado -->
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="text" id="dataEntrada" name="dataEntrada" class="datepicker" required>
+                <label for="dataEntrada">Data de Entrada</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="text" id="dataSaida" name="dataSaida" class="datepicker" required>
+                <label for="dataSaida">Data de Saída</label>
+              </div>
+            </div>
+            <!-- Adicione outros campos do formulário para os cálculos rescisórios -->
+            <div class="ui segment">
+              <div class="ui three column very relaxed grid">
+                <div class="column">
+                  <div class="grouped fields">
+                    <label for="Aviso">Aviso Prévio:</label>
+                    <div class="field">
+                      <div class="ui radio checkbox checked">
+                        <input type="radio" name="Aviso2" checked="" tabindex="0" class="hidden">
+                        <label>Indenizado</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Aviso2" tabindex="0" class="hidden">
+                        <label>Trabalhado</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Aviso2" tabindex="0" class="hidden">
+                        <label>Não Trabalhado</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="grouped fields">
+                    <label for="Ferias">Férias Venc.:</label>
+                    <div class="field">
+                      <div class="ui radio checkbox checked">
+                        <input type="radio" name="Ferias2" checked="" tabindex="0" class="hidden">
+                        <label>Nenhuma</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Ferias2" tabindex="0" class="hidden">
+                        <label>Uma</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Ferias2" tabindex="0" class="hidden">
+                        <label>Duas</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="grouped fields">
+                    <label for="Motivo">Motivo:</label>
+                    <div class="field">
+                      <div class="ui radio checkbox checked">
+                        <input type="radio" name="Motivo2" checked="" tabindex="0" class="hidden">
+                        <label>Justa Causa</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Motivo2" tabindex="0" class="hidden">
+                        <label>Sem Justa Causa</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Motivo2" tabindex="0" class="hidden">
+                        <label>Pedido de Demissão</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" name="Motivo2" tabindex="0" class="hidden">
+                        <label>Acordo</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="ui vertical divider">
+            </div>
+          </div>
+        </form>
+        <br><br>
+
+        <button class="btn waves-effect waves-light" type="button" onclick="calcularRescisao()">Calcular</button>
+        <button class="btn waves-effect waves-light" type="button" onclick="gerarPDF()">Gerar PDF
+          <i class="material-icons right">send</i>
+        </button>
+          <!-- Div para exibir os resultados dos cálculos -->
+          <div id="resultados"></div>
+        </div>
+      
+        <script>
+          // Inicialize os datepickers
+          document.addEventListener('DOMContentLoaded', function() {
+            var datepickers = document.querySelectorAll('.datepicker');
+            var options = {
+              format: 'dd/mm/yyyy',
+              autoClose: true
+            };
+            var instances = M.Datepicker.init(datepickers, options);
+          });
+
+          // Função para calcular a rescisão (substitua por seus cálculos específicos)
+          function calcularRescisao() {
+            // Obtenha os valores dos campos do formulário
+            var nomeFuncionario = document.getElementById('nomeFuncionario').value;
+            
+            // Realize os cálculos necessários e exiba os resultados
+            var resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '<h4>Resultados para ' + nomeFuncionario + '</h4>';
+            // Adicione os resultados específicos aqui
+      
+            // Exemplo: resultadosDiv.innerHTML += '<p>Valor a ser pago: R$ 10.000,00</p>';
+          }
+        </script>
     </div>
   </div>
     </main>
@@ -130,8 +266,11 @@
 <script>
   $(document).ready(function(){
     $('.ui.dropdown').dropdown();
+    $('.ui.checkbox').checkbox();
+      // Inicialize outros componentes do Fomantic UI aqui
   });
-</script>
+  </script>
+
 
 <!-- External libraries -->
 
